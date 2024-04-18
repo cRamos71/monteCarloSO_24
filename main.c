@@ -3,6 +3,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include <math.h>
+#include <unistd.h>
 #define NUM_POINTS 10000
 #define NUM_POINTSPOLI 510
 
