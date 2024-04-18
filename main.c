@@ -8,8 +8,9 @@
 #define NUM_POINTSPOLI 510
 
 #include "fase1A.c"
-#include "fase1A.h"
+#include "fase1B.c"
 
 int main(int argc, char *argv[]){
-    main_fase1A(argc, argv);
+    //main_fase1A(argc, argv);
+    main_fase1B(argc,argv);
 }

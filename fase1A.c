@@ -108,7 +108,7 @@ int main_fase1A(int argc, char *argv[]) {
         }
     }
     double squareArea = 4.0;
-    double lakeArea = squareArea * ((double)pointsInside / NUM_POINTS);
+    double lakeArea = squareArea * ((double)pointsInside / num_points);
     printf("Estimated area of the polygon: %f\n", lakeArea);
     return 0;
 }
