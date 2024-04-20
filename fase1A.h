@@ -8,7 +8,9 @@
 #include <stdbool.h>
 #include <math.h>
 #include <unistd.h>
+#include <sys/fcntl.h>
 #define NUM_POINTSPOLI 510
+#define BUFFER_SIZE 255
 
 #ifndef MONTECARLO_2024_FASE1A_H
 #define MONTECARLO_2024_FASE1A_H

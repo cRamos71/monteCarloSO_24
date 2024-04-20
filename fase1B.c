@@ -23,14 +23,14 @@ int main_fase1B(int argc, char *argv[]) {
     int count = 0;
     Point polygon[NUM_POINTSPOLI];
     while (fscanf(file,"{%lf, %lf},",&polygon[count].x,&polygon[count].y) != 0){
-        count++; // increse the n value so we fill the Point array
+        count++; // increase the n value so we fill the Point array
     }
 
     fclose(file);
 
-    pid_t child_pid;
-
     int points_per_process = num_points / num_processes;
+    int extra_points = num_points % num_processes;
+
     int n = sizeof(polygon)/sizeof(polygon[0]);
     Point testPoints[num_points];
 
@@ -50,8 +50,12 @@ int main_fase1B(int argc, char *argv[]) {
         }
 
         if(child_pid  == 0){
-            printf("Childpid: %d", getpid());
             int pointsInside = 0;
+
+            if (i == num_processes-1 && extra_points != 0){
+                points_per_process = points_per_process + extra_points;
+                pointLimit = pointLimit + extra_points;
+            }
 
             for (int j = pointLimit-points_per_process; j < pointLimit; ++j) {
                 if(isInsidePolygon(polygon, n, testPoints[j])) {
@@ -66,7 +70,7 @@ int main_fase1B(int argc, char *argv[]) {
                 return 1;
             }
 
-            dprintf(filefd, "%d;%d;%d\n",  getppid(), points_per_process, pointsInside);
+            dprintf(filefd, "%d;%d;%d\n",  getpid(), points_per_process, pointsInside);
             close(filefd);
 
             return 0;
