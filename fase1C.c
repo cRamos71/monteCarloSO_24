@@ -13,6 +13,9 @@ int main_fase1C(int argc, char *argv[]) {
     int num_processes = atoi(argv[2]);
     int num_points = atoi(argv[3]);
 
+    double percentage = 100.0/num_processes;
+    double state = 0;
+    
     srand(time(NULL));
 
     FILE *file = fopen(filename, "r");
@@ -70,7 +73,7 @@ int main_fase1C(int argc, char *argv[]) {
                //printf("Filho %d, Ponto: %s\n", i, buffer);
                if (isInsidePolygon(polygon,n,recievedPoint)){
                    pointsInside++;
-                   //printf("Point inside found!");
+                   //printf("Point inside found! Child %d, Point: %lf, %lf\n", i,recievedPoint.x,recievedPoint.y);
                    /*
                    // Format B
                    sprintf(buffer, "%d;%lf;%lf", getpid(),recievedPoint.x, recievedPoint.y);
@@ -109,12 +112,14 @@ int main_fase1C(int argc, char *argv[]) {
 
     for (int i = 0; i < num_processes; i++){
         int pointLimit = (i + 1) * points_per_process;
-        printf("%d\n", pointLimit);
+        //printf("%d\n", pointLimit);
         for (int j = i * points_per_process; j < pointLimit; j++) {
             sprintf(buffer, "%lf, %lf", testPoints[j].x, testPoints[j].y);
            // printf("%s\n", buffer);
             write(pipe1[i][1], buffer , sizeof(buffer));
         }
+        state+=percentage;
+        printf("Current progression: %0.1lf%%\n", state);
     }
 
     for (int i = 0; i < num_processes; ++i) {
@@ -140,7 +145,7 @@ int main_fase1C(int argc, char *argv[]) {
             recievedPointsN++;
             */
         }
-        printf("Process %d, Total points inside: %d\n", i, recievedPointsInside);
+        printf("Process %d, Total points inside: %d \n", i, recievedPointsInside);
     }
 
     for (int i = 0; i < num_processes; ++i) {
