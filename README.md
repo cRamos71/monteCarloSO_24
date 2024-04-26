@@ -20,11 +20,12 @@ E. Unix Domain Sockets: Modification of requirement C to support inter-process c
 
 ### Compile the program:
 
-gcc monteCarlo.c -o monteCarlo -lpthread
+gcc monteCarlo.c -o monteCarlo -main.c
 
 ### Run the program with command line arguments:
 
 ./monteCarlo poligon.txt 3 900
+
 Follow the on-screen instructions and observe the progress indicator and final result.
 
 ## Files
