@@ -102,7 +102,7 @@ int main_fase1A(int argc, char *argv[]) {
     int n = sizeof(polygon)/sizeof(polygon[0]);
     int pointsInside = 0;
     for(int i = 0; i < num_points; i++) {
-        Point p = {((double)rand()/RAND_MAX)*2 - 1, ((double)rand()/RAND_MAX)*2 - 1};
+        Point p = {((double)rand()/RAND_MAX)*3 - 1.5, ((double)rand()/RAND_MAX)*3 - 1.5};
         if(isInsidePolygon(polygon, n, p)) {
             pointsInside++;
         }

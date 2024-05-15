@@ -1,3 +1,3 @@
-/Users/claudio/CLionProjects/monteCarlo_2024/cmake-build-debug/CMakeFiles/monteCarlo_2024.dir
-/Users/claudio/CLionProjects/monteCarlo_2024/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/claudio/CLionProjects/monteCarlo_2024/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/mlmtpinto/CLionProjects/monteCarloSO_24/cmake-build-debug/CMakeFiles/monteCarlo_2024.dir
+/Users/mlmtpinto/CLionProjects/monteCarloSO_24/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/mlmtpinto/CLionProjects/monteCarloSO_24/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -130,7 +130,7 @@ int main_fase1E(int argc, char *argv[]) {
 
 
         for (int j = startingPoint; j < pointLimit; j++) {
-            Point p = {((double)rand()/RAND_MAX)*2 - 1, ((double)rand()/RAND_MAX)*2 - 1};
+            Point p = {((double)rand()/RAND_MAX)*3 - 1.5, ((double)rand()/RAND_MAX)*3 - 1.5};
             sprintf(buffer, "%lf, %lf", p.x, p.y);
             write(connfd, buffer, sizeof(buffer));
         }
@@ -164,7 +164,7 @@ int main_fase1E(int argc, char *argv[]) {
     close(listenfd);
 
 
-    double squareArea = 5.0;
+    double squareArea = 9.0;
     double lakeArea = squareArea * ((double)receivedPointsInside / num_points);
     printf("Estimated area of the polygon: %f\n", lakeArea);
 

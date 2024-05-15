@@ -35,7 +35,7 @@ int main_fase1B(int argc, char *argv[]) {
     Point testPoints[num_points];
 
     for(int i = 0; i < num_points; i++) {
-        Point p = {((double)rand()/RAND_MAX)*2 - 1, ((double)rand()/RAND_MAX)*2 - 1};
+        Point p = {((double)rand()/RAND_MAX)*3 - 1.5, ((double)rand()/RAND_MAX)*3 - 1.5};
         testPoints[i] = p;
     }
 
