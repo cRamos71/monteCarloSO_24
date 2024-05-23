@@ -11,10 +11,12 @@
 #include "fase1B.c"
 #include "fase1C.c"
 #include "fase1E.c"
+#include "fase2A.c"
 
 int main(int argc, char *argv[]){
     //main_fase1A(argc, argv);
     //main_fase1B(argc,argv);
     //main_fase1C(argc,argv);
-    main_fase1E(argc, argv);
+    //main_fase1E(argc, argv);
+     main_fase2A(argc, argv);
 }

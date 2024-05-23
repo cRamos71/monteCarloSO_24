@@ -39,6 +39,10 @@ int main_fase1B(int argc, char *argv[]) {
         testPoints[i] = p;
     }
 
+    int filefd = open("testfile", O_WRONLY | O_CREAT | O_APPEND, 0666);
+    dprintf(filefd, "\nOutput:\n");
+    close(filefd);
+
     for(int i = 0; i < num_processes; i++){
         pid_t child_pid;
 
@@ -69,7 +73,6 @@ int main_fase1B(int argc, char *argv[]) {
                 perror("Error opening file");
                 return 1;
             }
-
             dprintf(filefd, "%d;%d;%d\n",  getpid(), points_per_process, pointsInside);
             close(filefd);
 
