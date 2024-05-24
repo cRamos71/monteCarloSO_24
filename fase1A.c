@@ -72,6 +72,57 @@ bool isInsidePolygon(Point polygon[], int n, Point p) {
     } while (i != 0);
     return count&1;
 }
+
+
+void readPolygon(Point polygon[], char *filename) {
+
+    int file = open(filename, O_RDONLY);
+
+    if (file == -1){
+        perror("error in file ");
+        exit(1);
+    }
+
+    char buffer[8196];
+    char leftover[8196] = "";
+    int bytesRead;
+    int count = 0;
+
+    while ((bytesRead = read(file, buffer, 8195)) > 0) {
+        buffer[bytesRead] = '\0';
+        /*
+        printf("\n--------------------------------------------------\n");
+        printf("%s", buffer);
+        printf("\n--------------------------------------------------\n");
+        */
+        char tempBuffer[8300];
+        snprintf(tempBuffer, sizeof(tempBuffer), "%s%s", leftover, buffer);
+
+        leftover[0] = '\0';
+
+        printf("\n-+++++++++++++++++++++-\n");
+        printf("%s", tempBuffer);
+        printf("\n-+++++++++++++++++++++-\n");
+
+
+        char* ptr = tempBuffer;
+        while (sscanf(ptr, " {%lf , %lf },%n", &polygon[count].x, &polygon[count].y, &bytesRead) == 2) {
+            //printf("x: %lf, y: %lf\n", polygon[count].x, polygon[count].y);
+            count++;
+            ptr += bytesRead;
+        }
+
+        if (*ptr != '\0') {
+        //printf("%lu", sizeof(leftover));
+        strncpy(leftover, ptr, sizeof(leftover) - 1);
+        leftover[sizeof(leftover) - 1] = '\0';
+        }
+    }
+
+    close(file);
+
+}
+
 int main_fase1A(int argc, char *argv[]) {
 
     if (argc != 4){
@@ -85,19 +136,9 @@ int main_fase1A(int argc, char *argv[]) {
 
     srand(time(NULL));
 
-    FILE *file = fopen(filename, "r");
-    if (!file) {
-        printf("Error opening file: %s\n",filename);
-
-    }
-
-    int count = 0;
     Point polygon[NUM_POINTSPOLI];
-    while (fscanf(file,"{%lf, %lf},",&polygon[count].x,&polygon[count].y) != 0){
-        count++; // increse the n value so we fill the Point array
-    }
+    readPolygon(polygon, filename);
 
-    fclose(file);
 
     int n = sizeof(polygon)/sizeof(polygon[0]);
     int pointsInside = 0;

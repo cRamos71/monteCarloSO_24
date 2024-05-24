@@ -5,9 +5,11 @@
 #include "fase2B.h"
 #include "fase2A.h"
 #include "fase1A.h"
-
+/*
 pthread_mutex_t trinco = PTHREAD_MUTEX_INITIALIZER;
-int totalPointsInside = 0;
+int totalPointsInside = 0, pointsVerified = 0;
+dispatch_semaphore_t printState, statePrinted;
+
 
 
 void *worker_thread(void *arg){
@@ -19,13 +21,17 @@ void *worker_thread(void *arg){
             totalPointsInside++;
             pthread_mutex_unlock(&trinco);
         }
+        pthread_mutex_lock(&trinco);
+        pointsVerified++;
+        pthread_mutex_unlock(&trinco);
+        dispatch_semaphore_signal(printState);
 
     }
 
     pthread_exit(0);
 }
 
-int main_fase2A(int argc, char *argv[]) {
+int main_fase2B(int argc, char *argv[]) {
 
     if (argc != 4){
         perror("Not enough parameters!");
@@ -37,20 +43,13 @@ int main_fase2A(int argc, char *argv[]) {
     int num_points = atoi(argv[3]);
 
     pthread_t threads[num_threads];
+    printState = dispatch_semaphore_create(1);
+    struct timespec timee, timee1 = {0, 1};
 
     srand(time(NULL));
 
-    FILE *file = fopen(filename, "r");
-    if (!file) {
-        printf("Error opening file: %s\n",filename);
-    }
-    int count = 0;
     Point polygon[NUM_POINTSPOLI];
-    while (fscanf(file,"{%lf, %lf},",&polygon[count].x,&polygon[count].y) != 0){
-        count++; // increase the n value so we fill the Point array
-    }
-
-    fclose(file);
+    readPolygon(polygon, filename);
 
     Point testPoints[num_points];
 
@@ -76,9 +75,14 @@ int main_fase2A(int argc, char *argv[]) {
         pthread_create(&threads[i], NULL, worker_thread,(void *) &threadStruct[i]);
     }
 
-
-    for (int i = 0; i < num_threads; ++i)
-        pthread_join(threads[i], NULL);
+    while(pointsVerified < num_points) {
+        nanosleep(&timee,&timee1);
+        pthread_mutex_lock(&trinco);
+        double progress = (double) pointsVerified / num_points * 100;
+        pthread_mutex_unlock(&trinco);
+        printf("Progress: %.2f%%\n", progress);
+        dispatch_semaphore_wait(printState, DISPATCH_TIME_FOREVER);
+    }
 
 
     double squareArea = 9.0;
@@ -88,4 +92,4 @@ int main_fase2A(int argc, char *argv[]) {
 
     return 0;
 
-}
+}*/

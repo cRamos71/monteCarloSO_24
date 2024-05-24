@@ -18,19 +18,8 @@ int main_fase1C(int argc, char *argv[]) {
     
     srand(time(NULL));
 
-    FILE *file = fopen(filename, "r");
-    if (!file) {
-        printf("Error opening file: %s\n",filename);
-
-    }
-
-    int count = 0;
     Point polygon[NUM_POINTSPOLI];
-    while (fscanf(file,"{%lf, %lf},",&polygon[count].x,&polygon[count].y) != 0){
-        count++; // increse the n value so we fill the Point array
-    }
-
-    fclose(file);
+    readPolygon(polygon, filename);
 
     int points_per_process = num_points / num_processes;
     int n = sizeof(polygon)/sizeof(polygon[0]);

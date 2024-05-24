@@ -14,19 +14,8 @@ int main_fase1B(int argc, char *argv[]) {
 
     srand(time(NULL));
 
-    FILE *file = fopen(filename, "r");
-    if (!file) {
-        printf("Error opening file: %s\n",filename);
-
-    }
-
-    int count = 0;
     Point polygon[NUM_POINTSPOLI];
-    while (fscanf(file,"{%lf, %lf},",&polygon[count].x,&polygon[count].y) != 0){
-        count++; // increase the n value so we fill the Point array
-    }
-
-    fclose(file);
+    readPolygon(polygon, filename);
 
     int points_per_process = num_points / num_processes;
     int extra_points = num_points % num_processes;
@@ -35,7 +24,7 @@ int main_fase1B(int argc, char *argv[]) {
     Point testPoints[num_points];
 
     for(int i = 0; i < num_points; i++) {
-        Point p = {((double)rand()/RAND_MAX)*3 - 1.5, ((double)rand()/RAND_MAX)*3 - 1.5};
+        Point p = {((double)rand()/RAND_MAX)*2 - 1, ((double)rand()/RAND_MAX)*2 - 1};
         testPoints[i] = p;
     }
 
@@ -61,10 +50,12 @@ int main_fase1B(int argc, char *argv[]) {
                 pointLimit = pointLimit + extra_points;
             }
 
-            for (int j = pointLimit-points_per_process; j < pointLimit; ++j) {
+
+            for (int j = pointLimit-points_per_process; j < pointLimit; j++) {
                 if(isInsidePolygon(polygon, n, testPoints[j])) {
                     pointsInside++;
-                }
+                    printf("inside %lf %lf\n", testPoints[j].x, testPoints[j].y);
+                }else printf("outside %lf %lf\n", testPoints[j].x, testPoints[j].y);
             }
 
             int filefd = open("testfile", O_WRONLY | O_CREAT | O_APPEND, 0666);
