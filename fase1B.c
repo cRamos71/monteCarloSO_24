@@ -1,6 +1,6 @@
 #include "fase1B.h"
 #include "fase1A.h"
-
+/*
 int main_fase1B(int argc, char *argv[]) {
 
     if (argc != 4){
@@ -76,4 +76,4 @@ int main_fase1B(int argc, char *argv[]) {
     }
 
     return 0;
-}
+}*/

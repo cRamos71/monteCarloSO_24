@@ -100,9 +100,9 @@ void readPolygon(Point polygon[], char *filename) {
 
         leftover[0] = '\0';
 
-        printf("\n-+++++++++++++++++++++-\n");
-        printf("%s", tempBuffer);
-        printf("\n-+++++++++++++++++++++-\n");
+        //printf("\n-+++++++++++++++++++++-\n");
+        //printf("%s", tempBuffer);
+        //printf("\n-+++++++++++++++++++++-\n");
 
 
         char* ptr = tempBuffer;

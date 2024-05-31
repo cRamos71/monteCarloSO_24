@@ -1,6 +1,4 @@
-//
-// Created by Cláudio Ramos on 23/05/2024.
-//
+/*
 #include "fase1A.h"
 #include "fase2A.h"
 
@@ -78,3 +76,4 @@ int main_fase2A(int argc, char *argv[]) {
 
     return 0;
 }
+*/
