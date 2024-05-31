@@ -15,7 +15,7 @@ int main_fase1C(int argc, char *argv[]) {
 
     double percentage = 100.0/num_processes;
     double state = 0;
-    
+
     srand(time(NULL));
 
     Point polygon[NUM_POINTSPOLI];
@@ -141,6 +141,7 @@ int main_fase1C(int argc, char *argv[]) {
     double squareArea = 9.0;
     double lakeArea = squareArea * ((double)recievedPointsInside / num_points);
     printf("Estimated area of the polygon: %f\n", lakeArea);
+
 
     return 0;
 }
