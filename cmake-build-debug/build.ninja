@@ -79,6 +79,12 @@ build CMakeFiles/monteCarlo_2024.dir/fase2C.c.o: C_COMPILER__monteCarlo_2024_uns
   OBJECT_DIR = CMakeFiles/monteCarlo_2024.dir
   OBJECT_FILE_DIR = CMakeFiles/monteCarlo_2024.dir
 
+build CMakeFiles/monteCarlo_2024.dir/fase2Ca.c.o: C_COMPILER__monteCarlo_2024_unscanned_Debug /Users/claudio/CLionProjects/monteCarlo_2024/fase2Ca.c || cmake_object_order_depends_target_monteCarlo_2024
+  DEP_FILE = CMakeFiles/monteCarlo_2024.dir/fase2Ca.c.o.d
+  FLAGS = -g -std=gnu11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -mmacosx-version-min=14.1 -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/monteCarlo_2024.dir
+  OBJECT_FILE_DIR = CMakeFiles/monteCarlo_2024.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target monteCarlo_2024
@@ -87,7 +93,7 @@ build CMakeFiles/monteCarlo_2024.dir/fase2C.c.o: C_COMPILER__monteCarlo_2024_uns
 #############################################
 # Link the executable monteCarlo_2024
 
-build monteCarlo_2024: C_EXECUTABLE_LINKER__monteCarlo_2024_Debug CMakeFiles/monteCarlo_2024.dir/main.c.o CMakeFiles/monteCarlo_2024.dir/fase1E.c.o CMakeFiles/monteCarlo_2024.dir/fase2A.c.o CMakeFiles/monteCarlo_2024.dir/fase2B.c.o CMakeFiles/monteCarlo_2024.dir/fase2C.c.o
+build monteCarlo_2024: C_EXECUTABLE_LINKER__monteCarlo_2024_Debug CMakeFiles/monteCarlo_2024.dir/main.c.o CMakeFiles/monteCarlo_2024.dir/fase1E.c.o CMakeFiles/monteCarlo_2024.dir/fase2A.c.o CMakeFiles/monteCarlo_2024.dir/fase2B.c.o CMakeFiles/monteCarlo_2024.dir/fase2C.c.o CMakeFiles/monteCarlo_2024.dir/fase2Ca.c.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -mmacosx-version-min=14.1
   OBJECT_DIR = CMakeFiles/monteCarlo_2024.dir
   POST_BUILD = :

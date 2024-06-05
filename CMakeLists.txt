@@ -12,4 +12,6 @@ add_executable(monteCarlo_2024 main.c
         fase2C.c
         fase2C.h
         fase2C.c
+        fase2Ca.c
+        fase2Ca.h
 )

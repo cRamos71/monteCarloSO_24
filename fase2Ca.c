@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -8,12 +9,21 @@
 #include "fase2A.h"
 #include "fase1A.h"
 
-/*pthread_mutex_t trinco = PTHREAD_MUTEX_INITIALIZER;
-int totalPointsInside = 0, pointsVerified = 0, currIndex = 0, pointStock = 0;
+pthread_mutex_t trinco = PTHREAD_MUTEX_INITIALIZER;
+int totalPointsInside = 0, pointsVerified = 0, currIndex = 0, pointStock = 0, currIndexTotal = 0;
 int total_points = 0, n = 0;
 sem_t produce, consume;
 Point *testPoints = NULL;
 Point *polygon = NULL;
+Point *totalPoints = NULL;
+
+int existingPoint(Point *p, Point point){
+    for (int i = 0; i < total_points; ++i) {
+        if(p[i].x == point.x && p[i].y == point.y)
+            return 1;
+    }
+    return 0;
+}
 
 
 void* consumer_thread(void* arg) {
@@ -39,8 +49,13 @@ void* producer_thread(void* arg) {
         if (pointStock < 7) {
             sem_wait(&produce);
             pthread_mutex_lock(&trinco);
-            Point p = {((double)rand() / RAND_MAX) * 3 - 1.5, ((double)rand() / RAND_MAX) * 3 - 1.5};
+            Point p;
+            do {
+                p.x = ((double)rand() / RAND_MAX) * 2 - 1;
+                p.y = ((double)rand() / RAND_MAX) * 2 - 1;
+            } while (existingPoint(totalPoints, p) == 1);
             testPoints[(currIndex + pointStock) % 7] = p;
+            totalPoints[currIndexTotal++] = p;
             pointStock++;
             pthread_mutex_unlock(&trinco);
             sem_post(&consume);
@@ -49,7 +64,7 @@ void* producer_thread(void* arg) {
     pthread_exit(0);
 }
 
-int main_fase2C(int argc, char* argv[]) {
+int main_fase2Ca(int argc, char* argv[]) {
 
     if (argc != 5) {
         perror("Not enough parameters!");
@@ -62,6 +77,11 @@ int main_fase2C(int argc, char* argv[]) {
     int num_points = atoi(argv[4]);
     total_points = num_points;
 
+    totalPoints = malloc(num_points * sizeof(Point));
+    if (!totalPoints) {
+        perror("Failed to allocate memory for totalPoints");
+        return 1;
+    }
     testPoints = malloc(7 * sizeof(Point));
     if (!testPoints) {
         perror("Failed to allocate memory for testPoints");
@@ -69,7 +89,7 @@ int main_fase2C(int argc, char* argv[]) {
     }
 
     pthread_t threadsC[num_threadsC], threadsP[num_threadsP];
-    
+
     srand(time(NULL));
 
     polygon = malloc(NUM_POINTSPOLI * sizeof(Point));
@@ -109,4 +129,3 @@ int main_fase2C(int argc, char* argv[]) {
 
     return 0;
 }
-*/

@@ -27,7 +27,6 @@ int main_fase1C(int argc, char *argv[]) {
     int pipe1[num_processes][2];
     int pipe2[num_processes][2];
 
-    char buffer[4096];
 
     for (int i = 0; i < num_processes; ++i) {
         if (pipe(pipe1[i]) == -1 || pipe(pipe2[i]) == -1){
@@ -35,6 +34,8 @@ int main_fase1C(int argc, char *argv[]) {
             exit(1);
         }
     }
+
+    char buffer[4096];
 
 
 
